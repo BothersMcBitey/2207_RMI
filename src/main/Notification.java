@@ -2,8 +2,8 @@ package main;
 
 import java.io.Serializable;
 
-public abstract class Notification implements Serializable {
+public interface Notification extends Serializable {
 
-	private static final long serialVersionUID = 1L;
-
+	@Override
+	public abstract String toString();
 }
