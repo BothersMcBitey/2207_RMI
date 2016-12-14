@@ -1,18 +1,20 @@
-package main;
+package demo;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import framework.NotificationSink;
+
 public class NotificationClient{
 
 	public static void main(String[] args){
 		try{
-			Test c = new Test();
+			DemoSink c = new DemoSink();
 			
-			Registry reg = LocateRegistry.getRegistry();
+			Registry reg = LocateRegistry.getRegistry(); 
 			NotificationSink stub = (NotificationSink) UnicastRemoteObject.exportObject(c,0);			
-			reg.bind("sink", stub);
+			reg.rebind("sink", stub);
 			
 			c.register();
 		}catch (Exception e){

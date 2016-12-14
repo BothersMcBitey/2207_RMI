@@ -1,9 +1,13 @@
-package main;
+package demo;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class Test implements NotificationSink {
+import framework.Notification;
+import framework.NotificationSink;
+import framework.NotificationSource;
+
+public class DemoSink implements NotificationSink {
 
 
 	@Override
@@ -18,6 +22,10 @@ public class Test implements NotificationSink {
 			NotificationSource src = (NotificationSource) reg.lookup("src");	
 			
 			src.Register("sink");
+			
+			NotificationSource src1 = (NotificationSource) reg.lookup("src1");	
+			
+			src1.Register("sink");
 		}catch (Exception e){
 			e.printStackTrace();
 		}

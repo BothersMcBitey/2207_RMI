@@ -1,7 +1,9 @@
-package main;
+package demo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import framework.Notification;
 
 public class SecondNotification implements Notification{
 
@@ -15,7 +17,7 @@ public class SecondNotification implements Notification{
 	@Override
 	public String toString() {
 		return "A second has passed, the time is now: " + System.getProperty("line.separator") + 
-				new SimpleDateFormat().format(time);
+				new SimpleDateFormat("mm:ss").format(time);
 	}
 	
 }
