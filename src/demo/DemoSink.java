@@ -9,6 +9,11 @@ import framework.NotificationSource;
 
 public class DemoSink implements NotificationSink {
 
+	private String name;
+	
+	public DemoSink(String name) {
+		this.name = name;
+	}
 
 	@Override
 	public void Notify(Notification n) {
@@ -16,16 +21,11 @@ public class DemoSink implements NotificationSink {
 		System.out.println(n.toString());
 	}
 
-	public void register(){	
+	public void register(String id){	
 		try{
 			Registry reg = LocateRegistry.getRegistry();
-			NotificationSource src = (NotificationSource) reg.lookup("src");	
-			
-			src.Register("sink");
-			
-			NotificationSource src1 = (NotificationSource) reg.lookup("src1");	
-			
-			src1.Register("sink");
+			NotificationSource src = (NotificationSource) reg.lookup(id);				
+			src.Register(name);
 		}catch (Exception e){
 			e.printStackTrace();
 		}

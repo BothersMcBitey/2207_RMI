@@ -10,19 +10,17 @@ public class NotificationClient{
 
 	public static void main(String[] args){
 		try{
-			DemoSink c = new DemoSink();
+			String name = args[0];
+			DemoSink c = new DemoSink(name);
 			
 			Registry reg = LocateRegistry.getRegistry(); 
 			NotificationSink stub = (NotificationSink) UnicastRemoteObject.exportObject(c,0);			
-			reg.rebind("sink", stub);
+			reg.rebind(name, stub);
 			
-			c.register();
+			c.register("secondSrc");
+			c.register("clickSrc");
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-	}
-	
-	public NotificationClient() {
-		
 	}
 }

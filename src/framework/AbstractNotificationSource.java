@@ -60,7 +60,7 @@ public abstract class AbstractNotificationSource extends Thread implements Notif
 				register.replace(id, sink);
 			} else {
 				register.put(id, sink);
-				messageQueues.put(id, new LinkedList<Notification>());
+				messageQueues.put(id, new LinkedList<Notification>());;
 				System.out.println("New sink registered");
 			}
 		}

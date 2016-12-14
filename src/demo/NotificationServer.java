@@ -10,16 +10,18 @@ public class NotificationServer {
 
 	public static void main(String[] args){
 		try{
-			SecondNotificationSource src = new SecondNotificationSource();
-			SecondNotificationSource src1 = new SecondNotificationSource();
+			ClickNotificationSource clickSrc = new ClickNotificationSource();			
+			SecondNotificationSource secondSrc = new SecondNotificationSource();
 			
 			Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-			NotificationSource stub = (NotificationSource) UnicastRemoteObject.exportObject(src,0);			
-			reg.bind("src", stub);	
-			src.start();
-			NotificationSource stub1 = (NotificationSource) UnicastRemoteObject.exportObject(src1,0);			
-			reg.bind("src1", stub1);	
-			src1.start();
+			
+			NotificationSource secondStub = (NotificationSource) UnicastRemoteObject.exportObject(secondSrc,0);			
+			reg.bind("secondSrc", secondStub);			
+			NotificationSource clickStub = (NotificationSource) UnicastRemoteObject.exportObject(clickSrc,0);			
+			reg.bind("clickSrc", clickStub);	
+			
+			secondSrc.start();
+			clickSrc.start();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
