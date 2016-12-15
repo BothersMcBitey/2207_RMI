@@ -10,10 +10,24 @@ public class NotificationClient{
 
 	public static void main(String[] args){
 		try{
+			if(args.length != 1 && args.length != 3){							
+				System.err.println("Incorrect number of arguments, correct usage is:" + System.getProperty("line.separator") + 
+						"java NotificationClient [client_id] [host] [port]" + System.getProperty("line.separator") +
+						"OR:" + System.getProperty("line.separator") +
+						"java NotificationClient [client_id]");
+				System.exit(1);
+			}
+			
 			String name = args[0];
 			DemoSink c = new DemoSink(name);
+			Registry reg = null;
 			
-			Registry reg = LocateRegistry.getRegistry(); 
+			if(args.length == 3){
+				reg = LocateRegistry.getRegistry(args[1], Integer.parseInt(args[2]));
+			} else {
+				reg = LocateRegistry.getRegistry();
+			}
+			
 			NotificationSink stub = (NotificationSink) UnicastRemoteObject.exportObject(c,0);			
 			reg.rebind(name, stub);
 			

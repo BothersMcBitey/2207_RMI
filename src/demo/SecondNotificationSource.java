@@ -10,7 +10,7 @@ public class SecondNotificationSource extends AbstractNotificationSource {
 			while(!Thread.interrupted()){
 				Thread.sleep(1000);
 				QueueNotification(new SecondNotification());
-				System.out.println("S");
+//				System.out.println("S");
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

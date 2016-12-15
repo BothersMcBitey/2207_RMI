@@ -13,7 +13,16 @@ public class NotificationServer {
 			ClickNotificationSource clickSrc = new ClickNotificationSource();			
 			SecondNotificationSource secondSrc = new SecondNotificationSource();
 			
-			Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+			Registry reg = null;
+			if(args.length == 1){
+				reg = LocateRegistry.createRegistry(Integer.parseInt(args[0]));
+			} else if(args.length == 0){
+				reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+			} else {
+				System.err.println("Incorrect number of arguments, correct usage is:" + System.getProperty("line.separator") + 
+						"java NotificationServer [port]");
+				System.exit(1);
+			}
 			
 			NotificationSource secondStub = (NotificationSource) UnicastRemoteObject.exportObject(secondSrc,0);			
 			reg.bind("secondSrc", secondStub);			

@@ -92,7 +92,7 @@ public abstract class AbstractNotificationSource extends Thread implements Notif
 			while(connected && !q.isEmpty()){
 				try {
 					sink.Notify(q.peek());
-					System.out.println("notified");
+//					System.out.println("notified");
 					q.remove();
 				} catch (RemoteException e) {
 					connected = false;

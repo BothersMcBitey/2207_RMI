@@ -15,6 +15,6 @@ public class ClickNotification implements Notification {
 	}
 	
 	public String toString(){
-		return "Clickity clyck at " + p.toString();
+		return "Click at " + p.toString();
 	}
 }

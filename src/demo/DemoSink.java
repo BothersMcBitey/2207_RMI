@@ -17,7 +17,6 @@ public class DemoSink implements NotificationSink {
 
 	@Override
 	public void Notify(Notification n) {
-		System.out.println("notified");
 		System.out.println(n.toString());
 	}
 
