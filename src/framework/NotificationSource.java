@@ -7,4 +7,5 @@ public interface NotificationSource extends Remote{
 	
 	public void Register(String id) throws RemoteException;
 
+	public void UnRegister(String id) throws RemoteException;
 }

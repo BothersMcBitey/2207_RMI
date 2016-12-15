@@ -66,6 +66,18 @@ public abstract class AbstractNotificationSource extends Thread implements Notif
 		}
 	}
 	
+	public void UnRegister(String id) throws RemoteException{	
+		synchronized(register){
+			if(register.containsKey(id)){
+				register.remove(id);
+				messageQueues.remove(id);
+				System.out.println("Sink unregistered");
+			} else {
+				throw new RemoteException("No sink by this id registered here.");
+			}
+		}
+	}
+	
 	protected void QueueNotification(Notification n){
 		Collection<String> keys;
 		synchronized(register){

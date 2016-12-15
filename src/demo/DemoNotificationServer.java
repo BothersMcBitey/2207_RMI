@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import framework.NotificationSource;
 
-public class NotificationServer {
+public class DemoNotificationServer {
 
 	public static void main(String[] args){
 		try{
